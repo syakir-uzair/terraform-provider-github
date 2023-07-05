@@ -10,6 +10,10 @@ description: |-
 This resource allows you to create and manage repositories within your
 GitHub organization or personal account.
 
+~> Note: When used with GitHub App authentication, even GET requests must have
+the `contents:write` permission or else the `allow_merge_commit`, `allow_rebase_merge`,
+and `allow_squash_merge` attributes will be ignored, causing confusing diffs.
+
 ## Example Usage
 
 ```hcl
@@ -124,7 +128,9 @@ initial repository creation and create the target branch inside of the repositor
 
 The `pages` block supports the following:
 
-* `source` - (Required) The source branch and directory for the rendered Pages site. See [GitHub Pages Source](#github-pages-source) below for details.
+* `source` - (Optional) The source branch and directory for the rendered Pages site. See [GitHub Pages Source](#github-pages-source) below for details.
+
+* `build_type` - (Optional) The type of GitHub Pages site to build. Can be `legacy` or `workflow`. If you use `legacy` as build type you need to set the option `source`.
 
 * `cname` - (Optional) The custom domain for the repository. This can only be set after the repository has been created.
 

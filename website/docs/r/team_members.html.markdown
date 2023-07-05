@@ -59,7 +59,7 @@ resource "github_team_members" "some_team_members" {
 
 The following arguments are supported:
 
-* `team_id` - (Required) The GitHub team id
+* `team_id` - (Required) The GitHub team id or the GitHub team slug
 * `members` - (Required) List of team members. See [Members](#members) below for details.
 
 ### Members
@@ -72,8 +72,9 @@ The following arguments are supported:
 
 ## Import
 
-GitHub Team Membership can be imported using the team ID `teamid`, e.g.
+GitHub Team Membership can be imported using the team ID `teamid` or team name, e.g.
 
 ```
-$ terraform import github_team_member.some_team 1234567
+$ terraform import github_team_members.some_team 1234567
+$ terraform import github_team_members.some_team Administrators
 ```
